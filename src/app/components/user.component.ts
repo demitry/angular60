@@ -24,7 +24,25 @@ import { Component, Input } from '@angular/core';
 
   <form>
     <label>Name:</label> <br />
-    <input type="text" [(ngModel)]="name" name="name">
+    <input type="text" [(ngModel)]="name" name="name"><br />
+    
+    <label>E-mail:</label> <br />
+    <input type="email" [(ngModel)]="email" name="email"><br />
+    
+    <label>Address:</label> <br />
+    
+    <label>Street:</label> <br />
+    <input type="text" [(ngModel)]="address.street" name="address.street"> <br />
+    
+    <label>City:</label> <br />
+    <input type="text" [(ngModel)]="address.city" name="address.city"> <br />
+    
+    <label>State:</label> <br />
+    <input type="text" [(ngModel)]="address.state" name="address.state"> <br />
+    
+    <label>Hobbies:</label> <br />
+    <input type="text" [(ngModel)]="hobbies" name="hobbies"> <br />
+
   </form>
   `,
 })
@@ -51,7 +69,7 @@ export class UserComponent {
     this.showHobbies = false;
   }
 
-  toggleHobbies(){
+  toggleHobbies() {
     console.log("toggleHobbies")
     this.showHobbies = !this.showHobbies;
   }
