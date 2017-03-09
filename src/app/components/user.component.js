@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var UserComponent = (function () {
+    function UserComponent() {
         this.name = 'Dmitry Poluektov';
         this.email = 'dpoluektov@gmail.com';
         this.address = {
@@ -19,14 +19,14 @@ var AppComponent = (function () {
             state: 'MA'
         };
     }
-    AppComponent = __decorate([
+    UserComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
+            selector: 'user',
             template: "\n  <h1>Hello {{name}}</h1>\n  <p>email: <strong>{{email}}</strong></p>\n  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>\n  ",
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], UserComponent);
+    return UserComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.UserComponent = UserComponent;
+//# sourceMappingURL=user.component.js.map
