@@ -10,19 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var UserComponent = (function () {
+    /**
+     *
+     */
     function UserComponent() {
-        this.name = 'Dmitry Poluektov';
-        this.email = 'dpoluektov@gmail.com';
+        console.log('constructor ran');
+        this.name = 'Joe Cocker';
+        this.email = 'JoeCocker@gmail.com';
         this.address = {
             street: 'Main street',
             city: 'Boston',
-            state: 'MA'
+            state: 'MA',
         };
+        this.hobbies = ['Music', 'Photography', 'Literature'];
+        this.showHobbies = false;
     }
+    UserComponent.prototype.toggleHobbies = function () {
+        console.log("toggleHobbies");
+        this.showHobbies = !this.showHobbies;
+    };
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user',
-            template: "\n  <h1>Hello {{name}}</h1>\n  <p>email: <strong>{{email}}</strong></p>\n  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>\n  ",
+            template: "\n  <h1>Hello {{name}}</h1>\n  <p>email: <strong>{{email}}</strong></p>\n  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>\n\n  <button (click) = \"toggleHobbies()\">{{showHobbies? \"Hide Hobbies\" : \"Show Hobbies\"}} </button>  \n  <div *ngIf=\"showHobbies\">\n    <h3>Hobbies</h3>\n    {{hobbies }}\n\n    <ul>\n    <li *ngFor=\"let hobby of hobbies\">\n      {{hobby}}\n      </li>\n    </ul>\n  </div>\n\n  <form>\n    <label>Name:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\">\n  </form>\n  ",
         }), 
         __metadata('design:paramtypes', [])
     ], UserComponent);
