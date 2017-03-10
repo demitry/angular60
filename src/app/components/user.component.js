@@ -29,10 +29,17 @@ var UserComponent = (function () {
         console.log("toggleHobbies");
         this.showHobbies = !this.showHobbies;
     };
+    UserComponent.prototype.addHobby = function (hobby) {
+        this.hobbies.push(hobby);
+        console.log(hobby);
+    };
+    UserComponent.prototype.deleteHobby = function (i) {
+        this.hobbies.splice(i);
+    };
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user',
-            template: "\n  <h1>Hello {{name}}</h1>\n  <p>email: <strong>{{email}}</strong></p>\n  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>\n\n  <button (click) = \"toggleHobbies()\">{{showHobbies? \"Hide Hobbies\" : \"Show Hobbies\"}} </button>  \n  <div *ngIf=\"showHobbies\">\n    <h3>Hobbies</h3>\n    {{hobbies }}\n\n    <ul>\n    <li *ngFor=\"let hobby of hobbies\">\n      {{hobby}}\n      </li>\n    </ul>\n  </div>\n\n  <form>\n    <label>Name:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\"><br />\n    \n    <label>E-mail:</label> <br />\n    <input type=\"email\" [(ngModel)]=\"email\" name=\"email\"><br />\n    \n    <label>Address:</label> <br />\n    \n    <label>Street:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.street\" name=\"address.street\"> <br />\n    \n    <label>City:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.city\" name=\"address.city\"> <br />\n    \n    <label>State:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.state\" name=\"address.state\"> <br />\n    \n    <label>Hobbies:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"hobbies\" name=\"hobbies\"> <br />\n\n  </form>\n  ",
+            template: "\n  <h1>Hello {{name}}</h1>\n  <p>email: <strong>{{email}}</strong></p>\n  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>\n\n  <button (click) = \"toggleHobbies()\">{{showHobbies? \"Hide Hobbies\" : \"Show Hobbies\"}} </button>  \n  <div *ngIf=\"showHobbies\">\n    <h3>Hobbies</h3>\n    {{hobbies }}\n\n    <ul>\n    <li *ngFor=\"let hobby of hobbies; let i = index\">\n      {{hobby}} <button (click)=\"deleteHobby(i)\"> X </button> \n      </li>\n    </ul>\n  </div>\n\n<form (submit)=\"addHobby(hobby.value)\">\n  <label> Add hobby: </label> <br />\n  <input type=\"text\" #hobby /> <br />\n</form>\n\n<hr>\n<h3>Edit User</h3>\n  <form>\n    <label>Name:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\"><br />\n    \n    <label>E-mail:</label> <br />\n    <input type=\"email\" [(ngModel)]=\"email\" name=\"email\"><br />\n    \n    <label>Address:</label> <br />\n    \n    <label>Street:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.street\" name=\"address.street\"> <br />\n    \n    <label>City:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.city\" name=\"address.city\"> <br />\n    \n    <label>State:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"address.state\" name=\"address.state\"> <br />\n    \n    <label>Hobbies:</label> <br />\n    <input type=\"text\" [(ngModel)]=\"hobbies\" name=\"hobbies\"> <br />\n\n  </form>\n  ",
         }), 
         __metadata('design:paramtypes', [])
     ], UserComponent);

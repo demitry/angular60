@@ -16,12 +16,19 @@ import { Component, Input } from '@angular/core';
     {{hobbies }}
 
     <ul>
-    <li *ngFor="let hobby of hobbies">
-      {{hobby}}
+    <li *ngFor="let hobby of hobbies; let i = index">
+      {{hobby}} <button (click)="deleteHobby(i)"> X </button> 
       </li>
     </ul>
   </div>
 
+<form (submit)="addHobby(hobby.value)">
+  <label> Add hobby: </label> <br />
+  <input type="text" #hobby /> <br />
+</form>
+
+<hr>
+<h3>Edit User</h3>
   <form>
     <label>Name:</label> <br />
     <input type="text" [(ngModel)]="name" name="name"><br />
@@ -73,6 +80,16 @@ export class UserComponent {
     console.log("toggleHobbies")
     this.showHobbies = !this.showHobbies;
   }
+
+  addHobby(hobby) {
+    this.hobbies.push(hobby);
+    console.log(hobby);
+  }
+
+  deleteHobby(i){
+    this.hobbies.splice(i);
+  }
+
 }
 
 interface address {
