@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var AboutComponent = (function () {
+    function AboutComponent() {
     }
-    AppComponent = __decorate([
+    AboutComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "\n  <ul>\n  <li><a routerLink=\"/\">Home</a></li>\n  <li><a routerLink=\"/about\">About</a></li>\n  </ul>\n  <router-outlet></router-outlet>\n  ",
+            selector: 'about',
+            template: "\n    <h1>About this app</h1>\n    <a href=\"https://www.youtube.com/watch?v=-zW1zHqsdyc\"><strong>Angular 2 In 60 Minutes Video</strong></a>\n    <ul>\n    <li>Components</li>\n    <li>Bindings</li>\n    <li>Templates</li>\n    <li>Events</li>\n    <li>Directives</li>\n    <li>Services</li>\n    <li>Routing</li>\n    </ul>\n  ",
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], AboutComponent);
+    return AboutComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.AboutComponent = AboutComponent;
+//# sourceMappingURL=about.component.js.map
