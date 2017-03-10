@@ -2,56 +2,13 @@ import { type } from 'os';
 import { NgModel } from '@angular/forms/src/directives';
 import { Rule } from 'tslint/lib/rules/adjacentOverloadSignaturesRule';
 import { Component, Input } from '@angular/core';
+import { PostsService } from '../services/posts.service'
 
 @Component({
+  moduleId: module.id,
   selector: 'user',
-  template: `
-  <h1>Hello {{name}}</h1>
-  <p>email: <strong>{{email}}</strong></p>
-  <p>{{address.street}}, {{address.city}}, {{address.state}}</p>
-
-  <button (click) = "toggleHobbies()">{{showHobbies? "Hide Hobbies" : "Show Hobbies"}} </button>  
-  <div *ngIf="showHobbies">
-    <h3>Hobbies</h3>
-    {{hobbies }}
-
-    <ul>
-    <li *ngFor="let hobby of hobbies; let i = index">
-      {{hobby}} <button (click)="deleteHobby(i)"> X </button> 
-      </li>
-    </ul>
-  </div>
-
-<form (submit)="addHobby(hobby.value)">
-  <label> Add hobby: </label> <br />
-  <input type="text" #hobby /> <br />
-</form>
-
-<hr>
-<h3>Edit User</h3>
-  <form>
-    <label>Name:</label> <br />
-    <input type="text" [(ngModel)]="name" name="name"><br />
-    
-    <label>E-mail:</label> <br />
-    <input type="email" [(ngModel)]="email" name="email"><br />
-    
-    <label>Address:</label> <br />
-    
-    <label>Street:</label> <br />
-    <input type="text" [(ngModel)]="address.street" name="address.street"> <br />
-    
-    <label>City:</label> <br />
-    <input type="text" [(ngModel)]="address.city" name="address.city"> <br />
-    
-    <label>State:</label> <br />
-    <input type="text" [(ngModel)]="address.state" name="address.state"> <br />
-    
-    <label>Hobbies:</label> <br />
-    <input type="text" [(ngModel)]="hobbies" name="hobbies"> <br />
-
-  </form>
-  `,
+  templateUrl: 'user.component.html',
+  providers: [ PostsService ]
 })
 
 export class UserComponent {
@@ -60,10 +17,10 @@ export class UserComponent {
   address: address;
   hobbies: string[];
   showHobbies: boolean;
-  /**
-   *
-   */
-  constructor() {
+  posts: Post[]
+
+
+  constructor(private postsService: PostsService) {
     console.log('constructor ran');
     this.name = 'Joe Cocker';
     this.email = 'JoeCocker@gmail.com';
@@ -74,6 +31,11 @@ export class UserComponent {
     }
     this.hobbies = ['Music', 'Photography', 'Literature'];
     this.showHobbies = false;
+
+    this.postsService.getPosts().subscribe(posts => {
+      console.log(posts);
+      this.posts = posts;
+    })
   }
 
   toggleHobbies() {
@@ -81,12 +43,12 @@ export class UserComponent {
     this.showHobbies = !this.showHobbies;
   }
 
-  addHobby(hobby) {
+  addHobby(hobby: string) {
     this.hobbies.push(hobby);
     console.log(hobby);
   }
 
-  deleteHobby(i){
+  deleteHobby(i:number){
     this.hobbies.splice(i);
   }
 
@@ -96,4 +58,10 @@ interface address {
   street: string;
   city: string;
   state: string;
+}
+
+interface Post{
+  id: number;
+  title: string;
+  body: string;
 }
